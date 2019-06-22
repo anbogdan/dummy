@@ -1,0 +1,7 @@
+- hosts: all
+  remote_user: student
+  tasks:
+  - name: Clone app from repo
+    git:
+       repo: 'https://github.com/anbogdan/dummy.git'
+dest: /home/student/app
