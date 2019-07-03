@@ -30,4 +30,4 @@
     become: yes
     become_user: root
   - name: Run server
-    shell: python /var/www/run.py </dev/null >/dev/null 2>&1 &
+    shell: python /var/www/run.py </dev/null >test.out 2>&1 &
