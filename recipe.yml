@@ -4,4 +4,30 @@
   - name: Clone app from repo
     git:
        repo: 'https://github.com/anbogdan/dummy.git'
-       dest: /home/student/app
+       dest: /var/www
+    become: yes
+    become_user: root
+  - name: Update yum
+    yum:
+      name: https://centos7.iuscommunity.org/ius-release.rpm
+      state: latest
+    become: yes
+    become_user: root
+  - name: Install python36
+    yum:
+      name: python36
+      state: latest
+    become: yes
+    become_user: root
+  - name: Install pip3
+    yum:
+      name: python36-pip
+      state: latest
+    become: yes
+    become_user: root
+  - name: Install requirements
+    command: pip3 install -r /var/www/requirements.txt
+    become: yes
+    become_user: root
+  - name: Run server
+shell: python /var/www/run.py </dev/null >/dev/null 2>&1 &
